@@ -20,7 +20,7 @@ server {
     include snippets/tls_params;
 
     location / {
-        return 401 "";
+        return 403;
     }
 
     # location /weechat {
