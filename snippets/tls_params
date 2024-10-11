@@ -1,5 +1,5 @@
 ssl_protocols TLSv1.2 TLSv1.3;
-ssl_dhparam /etc/nginx/tls/dhparams.pem;
+ssl_dhparam /etc/nginx/tls/dhparam.pem;
 ssl_ciphers HIGH:!kRSA:!MEDIUM:!LOW:!EXP:!aNULL:!eNULL:!SSLv3:!SSLv2;
 ssl_prefer_server_ciphers on;
 

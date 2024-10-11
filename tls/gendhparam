@@ -1,0 +1,8 @@
+#!/bin/bash
+loc="${BASH_SOURCE[0]%/*}"
+[ "$loc" == "${BASH_SOURCE[0]}" ] && loc=.
+pushd "$loc" >& /dev/null
+loc="$PWD"
+popd >& /dev/null
+
+openssl dhparam -out "$loc/dhparam.pem" 2048
