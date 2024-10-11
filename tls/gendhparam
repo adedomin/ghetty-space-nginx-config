@@ -5,4 +5,4 @@ pushd "$loc" >& /dev/null
 loc="$PWD"
 popd >& /dev/null
 
-openssl dhparam -out "$loc/dhparam.pem" 2048
+openssl dhparam -out "$loc/dhparam.pem" 4096
