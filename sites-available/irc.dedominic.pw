@@ -1,0 +1,33 @@
+# upstream weechat {
+#     server unix:/run/weechat/weechat.sock;
+#     keepalive 16;
+# }
+
+server {
+    server_name irc.dedominic.pw;
+    listen [::]:80;
+
+    include snippets/acme_challenge;
+    include snippets/default_redirect;
+}
+
+server {
+    server_name irc.dedominic.pw;
+    listen [::]:443 ssl;
+    http2 on;
+
+    include snippets/dedominic.pw_cert;
+    include snippets/tls_params;
+
+    location / {
+        return 401 "";
+    }
+
+    # location /weechat {
+    #     include snippets/proxy_forward_headers;
+    #     include snippets/proxy_conn_upgrade;
+    #     proxy_set_header Upgrade $http_upgrade;
+    #     proxy_set_header Connection $connection_upgrade;
+    #     proxy_pass http://weechat/weechat;
+    # }
+}

@@ -1,0 +1,26 @@
+server {
+    server_name ghetty.space;
+    listen [::]:80;
+    
+    include snippets/acme_challenge;
+    include snippets/default_redirect;
+}
+
+server {
+    server_name ghetty.space;
+    listen [::]:443 ipv6only=off ssl;
+    http2 on;
+    root /var/www/ghetty;
+
+    include snippets/ghetty.space_cert;
+    include snippets/tls_params;
+
+    location / {
+        index index.html;
+    }
+
+    location /my-ip {
+        default_type text/plain;
+        return 200 "$remote_addr\n";
+    }
+}

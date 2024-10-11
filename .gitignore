@@ -1,0 +1,3 @@
+*.rpmnew
+*.default
+tls/

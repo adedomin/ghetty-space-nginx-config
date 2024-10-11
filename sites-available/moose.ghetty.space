@@ -1,0 +1,34 @@
+upstream moose {
+    server unix:/run/moose/moose.socket;
+    keepalive 4;
+}
+
+server {
+    server_name moose.ghetty.space;
+    listen [::]:80;
+
+    include snippets/acme_challenge;
+    include snippets/default_redirect;
+}
+
+server {
+    server_name moose.ghetty.space;
+    listen [::]:443 ssl;
+    http2 on;
+
+    proxy_buffering on;
+    proxy_request_buffering on;
+
+    include snippets/ghetty.space_cert;
+    include snippets/tls_params;
+
+    location /dump {
+        default_type application/json;
+        alias /var/www/ghetty/moose-dump;
+    }
+    
+    location / {
+        include snippets/proxy_forward_headers;
+        proxy_pass http://moose;
+    }
+}

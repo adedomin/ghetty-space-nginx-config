@@ -1,0 +1,8 @@
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_dhparam /etc/nginx/tls/dhparams.pem;
+ssl_ciphers HIGH:!kRSA:!MEDIUM:!LOW:!EXP:!aNULL:!eNULL:!SSLv3:!SSLv2;
+ssl_prefer_server_ciphers on;
+
+ssl_session_cache   shared:SSL:10m;
+ssl_session_timeout 10m;
+add_header Strict-Transport-Security "max-age=63072000";
