@@ -1,0 +1,6 @@
+gzip off;
+gzip_disable "msie6";
+#gzip_proxied expired no-cache no-store private auth;
+#gzip_comp_level 9;
+#gzip_min_length 500;
+#gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
