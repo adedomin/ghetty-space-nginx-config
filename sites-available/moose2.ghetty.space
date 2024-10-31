@@ -22,6 +22,11 @@ server {
     include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
+    location /dump {
+        default_type application/json;
+        alias /var/lib/moose2/dump.json;
+    }
+
     location / {
         include snippets/proxy_forward_headers;
         proxy_pass http://moose2;

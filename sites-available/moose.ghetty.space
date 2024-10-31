@@ -28,7 +28,8 @@ server {
     }
     
     location / {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://moose;
+        # include snippets/proxy_forward_headers;
+        # proxy_pass http://moose;
+        return 301 https://moose2.ghetty.space;
     }
 }
