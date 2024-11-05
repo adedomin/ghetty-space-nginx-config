@@ -22,8 +22,9 @@ server {
     include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
-    location /dump {
-        default_type application/json;
+    location = /dump {
+        add_header "Cache-Control" "max-age=300, public";
+        default_type "application/json";
         alias /var/lib/moose2/dump.json;
     }
 
