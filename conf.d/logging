@@ -8,7 +8,7 @@ log_format main escape=json
       '"bytes-recv":$request_length,'
       '"request-time":$request_time,'
       '"user-agent":"$http_user_agent",'
-      '"http":"$request",'
+      '"http":"$request"'
     '}';
 access_log syslog:server=unix:/dev/log main;
 error_log syslog:server=unix:/dev/log;
