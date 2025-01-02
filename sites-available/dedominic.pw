@@ -1,3 +1,16 @@
+map $binary_remote_addr $part_subnet48 {
+    "~^(?P<sub>......)..........$" "$sub";
+}
+
+map $binary_remote_addr $ipv4_in_6 {
+    "~^..........(?P<ip>......)$" $ip;
+}
+
+map $part_subnet48 $subnet48 {
+    default  $part_subnet48;
+    "~^\x00" $ipv4_in_6;
+}
+
 server {
     server_name dedominic.pw;
     root /var/www/html;
@@ -33,6 +46,11 @@ server {
     location /my-ip-binary {
         default_type application/octet-stream;
         return 200 "$binary_remote_addr";
+    }
+
+    location /my-ip-48 {
+        default_type application/octet-stream;
+        return 200 "$subnet48";
     }
 
     location / {
