@@ -1,0 +1,12 @@
+map $binary_remote_addr $part_subnet48 {
+    "~^(?P<sub>......)..........$" "$sub";
+}
+
+map $binary_remote_addr $ipv4_in_6 {
+    "~^..........(?P<ip>......)$" $ip;
+}
+
+map $binary_remote_addr $subnet48 {
+    default  $part_subnet48;
+    "~^\x00" $ipv4_in_6;
+}
