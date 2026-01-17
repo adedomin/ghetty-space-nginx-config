@@ -1,15 +1,4 @@
-log_format main escape=json
-    '{'
-      '"time":"$time_iso8601",'
-      '"remote":"$remote_addr",'
-      '"host":"$host",'
-      '"http-status":$status,'
-      '"bytes-sent":$bytes_sent,'
-      '"bytes-recv":$request_length,'
-      '"request-time":$request_time,'
-      '"user-agent":"$http_user_agent",'
-      '"http":"$request"'
-    '}';
-access_log syslog:server=unix:/dev/log main;
-error_log syslog:server=unix:/dev/log;
+log_format simple '$host $status $request_time $request __ $remote_addr __ $http_user_agent';
+access_log syslog:server=unix:/dev/log,nohostname simple;
+error_log syslog:server=unix:/dev/log,nohostname;
 log_not_found off;

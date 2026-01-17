@@ -3,7 +3,7 @@ upstream moose2 {
     keepalive 4;
 }
 
-limit_req_zone $subnet48 zone=moose_new_ip_lim:1m rate=1r/m;
+# limit_req_zone $subnet48 zone=moose_new_ip_lim:1m rate=1r/m;
 
 server {
     server_name moose2.ghetty.space;
@@ -30,20 +30,20 @@ server {
         alias /var/lib/moose2/dump.json;
     }
 
-    location = /new {
-        limit_req zone=moose_new_ip_lim burst=2 nodelay;
-        limit_req_status 429;
-        error_page 429 @limited;
+    # location = /new {
+    #     limit_req zone=moose_new_ip_lim burst=2 nodelay;
+    #     limit_req_status 429;
+    #     error_page 429 @limited;
 
-        include snippets/proxy_forward_headers;
-        proxy_pass http://moose2;
-    }
+    #     include snippets/proxy_forward_headers;
+    #     proxy_pass http://moose2;
+    # }
 
-    location @limited {
-        add_header Retry-After "60";
-        default_type "application/json";
-        return 429 "{\"status\":\"error\",\"msg\":\"Retry again in about a minute.\"}";
-    }
+    # location @limited {
+    #     add_header Retry-After "60";
+    #     default_type "application/json";
+    #     return 429 "{\"status\":\"error\",\"msg\":\"Retry again in about a minute.\"}";
+    # }
 
     location / {
         include snippets/proxy_forward_headers;
