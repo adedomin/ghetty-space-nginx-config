@@ -1,5 +1,5 @@
 upstream images {
-    server unix:///run/imageshare/imageshare.socket;
+    server unix:///run/imageshare-rs/imageshare.socket;
     keepalive 4;
 }
 
@@ -23,54 +23,24 @@ server {
     include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
-    location = / {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://images;
-    }
-
-    location /matterbridge {
+    location /matterbridge/ {
         add_header X-Content-Type-Options nosniff;
-        alias /var/www/matterbridge;
+        alias /var/www/matterbridge/;
     }
 
-    location /upload {
-        include snippets/proxy_forward_headers;
-        client_max_body_size 100m;
-        proxy_pass http://images/upload;
+    location /i/ {
+        add_header X-Content-Type-Options nosniff;
+        root /var/lib/imageshare-rs;
     }
 
-    location /paste {
-        include snippets/proxy_forward_headers;
-        client_max_body_size 128k;
-        proxy_pass http://images/paste;
-    }
-
-    location /css {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://images/css;
-    }
-
-    location /js {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://images/js;
-    }
-
-    location /favicon.ico {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://images/favicon.ico;
+    location /p/ {
+        add_header X-Content-Type-Options nosniff;
+        root /var/lib/imageshare-rs;
     }
 
     location / {
-        add_header X-Content-Type-Options nosniff;
-        disable_symlinks off;
-        root /var/www/imgirc;
-    }
-
-    location /paste/ {
-        add_header X-Content-Type-Options nosniff;
-        add_header Content-Type "text/plain;charset=utf-8";
-        disable_symlinks off;
-        default_type text/plain;
-        root /var/www/;
+        include snippets/proxy_forward_headers;
+        client_max_body_size 50m;
+        proxy_pass http://images;
     }
 }
