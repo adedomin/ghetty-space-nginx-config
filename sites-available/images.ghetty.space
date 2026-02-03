@@ -34,7 +34,7 @@ server {
     }
 
     location /p/ {
-        add_header X-Content-Type-Options nosniff;
+        types { "text/plain; charset=utf-8" txt; }
         root /var/lib/imageshare-rs;
     }
 
