@@ -16,10 +16,6 @@ server {
     listen [::]:443 ssl;
     http2 on;
 
-    # client_max_body_size 0;
-    proxy_buffering on;
-    proxy_request_buffering on;
-
     include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
@@ -41,6 +37,12 @@ server {
     location / {
         include snippets/proxy_forward_headers;
         client_max_body_size 50m;
+        proxy_pass http://images;
+    }
+
+    location /paste {
+        include snippets/proxy_forward_headers;
+        client_max_body_size 64k;
         proxy_pass http://images;
     }
 }
