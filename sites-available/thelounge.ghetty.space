@@ -20,7 +20,6 @@ server {
     proxy_buffering on;
     proxy_request_buffering on;
 
-    include snippets/ghetty.space_cert;
     include snippets/tls_params;
     
     location /media/ {

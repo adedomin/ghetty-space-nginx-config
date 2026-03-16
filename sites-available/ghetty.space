@@ -12,7 +12,6 @@ server {
     http2 on;
     root /var/www/ghetty;
 
-    include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
     location / {

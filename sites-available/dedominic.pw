@@ -13,7 +13,6 @@ server {
     listen [::]:443 ssl default_server;
     http2 on;
 
-    include snippets/dedominic.pw_cert;
     include snippets/tls_params;
 
     location /scripts/imap/cgi-bin/chpasswd.sh {

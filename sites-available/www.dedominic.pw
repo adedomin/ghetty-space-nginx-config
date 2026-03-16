@@ -14,7 +14,6 @@ server {
     listen [::]:443 ssl;
     http2 on;
 
-    include snippets/dedominic.pw_cert;
     include snippets/tls_params;
 
     location / {

@@ -16,7 +16,6 @@ server {
     listen [::]:443 ssl;
     http2 on;
 
-    include snippets/ghetty.space_cert;
     include snippets/tls_params;
 
     location /matterbridge/ {
