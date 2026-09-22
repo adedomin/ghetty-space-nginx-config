@@ -23,14 +23,15 @@ server {
         alias /var/www/matterbridge/;
     }
 
-    location /i/ {
+    location /internal/i/ {
+        internal;
         add_header X-Content-Type-Options nosniff;
-        root /var/lib/imageshare-rs;
+        alias /var/lib/imageshare-rs/i/;
     }
 
-    location /p/ {
+    location /internal/p/ {
         types { "text/plain; charset=utf-8" txt; }
-        root /var/lib/imageshare-rs;
+        alias /var/lib/imageshare-rs/p/;
     }
 
     location / {
