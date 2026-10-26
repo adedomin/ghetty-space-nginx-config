@@ -8,11 +8,10 @@ server {
 
 server {
     server_name ghetty.space;
-    listen [::]:443 ipv6only=off ssl;
-    http2 on;
-    root /var/www/ghetty;
 
     include snippets/tls_params;
+
+    root /var/www/ghetty;
 
     location / {
         index index.html;

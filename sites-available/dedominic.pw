@@ -13,11 +13,10 @@ server {
 
 server {
     server_name dedominic.pw;
-    root /var/www/html;
-    listen [::]:443 ssl default_server;
-    http2 on;
 
     include snippets/tls_params;
+
+    root /var/www/html;
 
     location /scripts/imap/cgi-bin/chpasswd.sh {
         include snippets/proxy_forward_headers;

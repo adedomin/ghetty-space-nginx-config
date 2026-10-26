@@ -11,8 +11,6 @@ server {
 
 server {
     server_name www.dedominic.pw;
-    listen [::]:443 ssl;
-    http2 on;
 
     include snippets/tls_params;
 

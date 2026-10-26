@@ -13,13 +13,11 @@ server {
 
 server {
     server_name moose.ghetty.space;
-    listen [::]:443 ssl;
-    http2 on;
+
+    include snippets/tls_params;
 
     proxy_buffering on;
     proxy_request_buffering on;
-
-    include snippets/tls_params;
 
     location /dump {
         default_type application/json;
