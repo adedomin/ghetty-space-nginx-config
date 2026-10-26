@@ -9,6 +9,7 @@ server {
 server {
     server_name ghetty.space;
 
+    include snippets/listen_norm;
     include snippets/tls_params;
 
     root /var/www/ghetty;

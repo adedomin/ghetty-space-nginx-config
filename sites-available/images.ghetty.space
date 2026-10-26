@@ -14,6 +14,7 @@ server {
 server {
     server_name images.ghetty.space;
 
+    include snippets/listen_norm;
     include snippets/tls_params;
 
     location /matterbridge/ {

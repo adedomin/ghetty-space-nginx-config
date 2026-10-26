@@ -16,6 +16,7 @@ server {
 server {
     server_name moose2.ghetty.space;
 
+    include snippets/listen_norm;
     include snippets/tls_params;
 
     location = /dump {

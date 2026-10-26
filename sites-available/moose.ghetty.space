@@ -14,6 +14,7 @@ server {
 server {
     server_name moose.ghetty.space;
 
+    include snippets/listen_norm;
     include snippets/tls_params;
 
     proxy_buffering on;

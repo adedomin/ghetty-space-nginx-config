@@ -13,6 +13,11 @@ server {
 
 server {
     server_name dedominic.pw;
+    listen [::]:443 ssl ipv6only=off default_server;
+    http2 on;
+    listen [::]:443 quic reuseport default_server;
+    http3 on;
+    add_header Alt-Svc 'h3=":443"; ma=86400';
 
     include snippets/tls_params;
 
