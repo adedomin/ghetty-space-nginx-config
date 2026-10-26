@@ -7,13 +7,6 @@ upstream moose2 {
 
 server {
     server_name moose2.ghetty.space;
-    listen [::]:80;
-
-    include snippets/default_redirect;
-}
-
-server {
-    server_name moose2.ghetty.space;
 
     include snippets/listen_norm;
     include snippets/tls_params;

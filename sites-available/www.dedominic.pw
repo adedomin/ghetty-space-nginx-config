@@ -1,14 +1,5 @@
 server {
     server_name www.dedominic.pw;
-    listen [::]:80;
-    
-    location / {
-        return 301 https://dedominic.pw$request_uri;
-    }
-}
-
-server {
-    server_name www.dedominic.pw;
 
     include snippets/listen_norm;
     include snippets/tls_params;

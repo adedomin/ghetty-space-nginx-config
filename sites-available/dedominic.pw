@@ -4,14 +4,6 @@ upstream rspamd {
 
 server {
     server_name dedominic.pw;
-    root /var/www/html;
-    listen [::]:80 ipv6only=off default_server;
-    
-    include snippets/default_redirect;
-}
-
-server {
-    server_name dedominic.pw;
     listen [::]:443 ssl ipv6only=off default_server;
     http2 on;
     # listen [::]:443 quic reuseport default_server;

@@ -5,13 +5,6 @@ upstream images {
 
 server {
     server_name images.ghetty.space;
-    listen [::]:80;
-
-    include snippets/default_redirect;
-}
-
-server {
-    server_name images.ghetty.space;
 
     include snippets/listen_norm;
     include snippets/tls_params;
