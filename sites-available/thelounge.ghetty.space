@@ -7,7 +7,6 @@ server {
     server_name thelounge.ghetty.space;
     listen [::]:80;
 
-    include snippets/acme_challenge;
     include snippets/default_redirect;
 }
 

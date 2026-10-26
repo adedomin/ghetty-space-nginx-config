@@ -9,7 +9,6 @@ server {
     server_name moose2.ghetty.space;
     listen [::]:80;
 
-    include snippets/acme_challenge;
     include snippets/default_redirect;
 }
 
