@@ -6,22 +6,8 @@ server {
     server_name dedominic.pw;
     listen [::]:443 ssl ipv6only=off default_server;
     http2 on;
-    # listen [::]:443 quic reuseport default_server;
-    # http3 on;
-    # add_header Alt-Svc 'h3=":443"; ma=86400';
 
     include snippets/tls_params;
-
-    root /var/www/html;
-
-    location /scripts/imap/cgi-bin/chpasswd.sh {
-        include snippets/proxy_forward_headers;
-        proxy_pass http://localhost:11534/cgi-bin/chpasswd.sh;
-    }
-
-    location /scripts/imap {
-        root /var/www;
-    }
 
     location /my-ip {
         default_type text/plain;
@@ -40,7 +26,6 @@ server {
 
     location / {
         root /var/www/html;
-        #index index.html;
     }
 
     location /rspamd/ {

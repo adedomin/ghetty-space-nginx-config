@@ -4,9 +4,8 @@ server {
     include snippets/listen_norm;
     include snippets/tls_params;
 
-    root /var/www/ghetty;
-
     location / {
+        root /var/www/ghetty;
         index index.html;
     }
 
